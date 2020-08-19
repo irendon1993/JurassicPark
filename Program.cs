@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace JurassicPark
 {
     //  PROBLEM) Create a Park for dinosours  
@@ -26,14 +28,14 @@ namespace JurassicPark
 
         public string Name { get; set; }
         public string DietType { get; set; }
-        // public DateTime TimeAcquired { get; set}
+        public DateTime WhenAcquired { get; set; } = DateTime.Now;
         public int Weight { get; set; }
         public int EnclosureNumber { get; set; }
 
         public string Description()
         {
             //  Dinosour will have:  
-            var description = "${Name}  is a {DietType} dinosaur that Weights {Weight} lbs and their enclosure number is {EnclosureNumber} ");
+            var description = $"{Name}  is a {DietType} dinosaur that Weights {Weight} lbs, their enclosure number is {EnclosureNumber} and was acquired {WhenAcquired} ";
 
             return description;
         }
@@ -41,25 +43,27 @@ namespace JurassicPark
     }
     class Program
     {
-        //public DateTime WhenAccquired {get; set;} = DateTime.Now;
-        //
-        // 
+        static Dinosaur PromptAndFindDinosaur(List<Dinosaur> dinosaursToSearchWithin)
+        {
+            Console.Write("Name: ");
+            var nameOfDinosaurToSearchFor = Console.ReadLine();
 
+            var foundDinosaur = dinosaursToSearchWithin.FirstOrDefault(dinosaur => dinosaur.Name == nameOfDinosaurToSearchFor);
 
+            return foundDinosaur;
+        }
+        // public DateTime WhenAccquired { get; set; } = DateTime.Now;
         static void Main(string[] args)
         {
-            // 
-            // Greet visitors 
-            Console.WriteLine("Welcome to Jurassic Park");
-            // Add dinosours to a list
+            var whenAcquired = DateTime.Now;
             var dinosaurs = new List<Dinosaur>()
             {
               //  Create a dinosour
               new Dinosaur
               {
               Name = "LITTLEFOOT",
-              DietType = "vegetarian", 
-              // WhenAccquired = time(),
+              DietType = "HERBIVORE",
+              WhenAcquired = whenAcquired,
               Weight = 230,
               EnclosureNumber = 001,
               },
@@ -67,8 +71,8 @@ namespace JurassicPark
               new Dinosaur
               {
               Name = "CERA",
-              DietType = "vegetarian", 
-              // WhenAccquired = time(),
+              DietType = "HERBIVORE",
+              WhenAcquired = whenAcquired,
               Weight = 220,
               EnclosureNumber = 001,
 
@@ -76,6 +80,8 @@ namespace JurassicPark
 
             };
 
+            // 
+            // Greet visitors 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Welcome to our Dino Zoo!");
@@ -83,15 +89,13 @@ namespace JurassicPark
             Console.WriteLine();
             // While the user hasn’t quit the application
             var hasQuitTheApplication = false;
+
             while (hasQuitTheApplication == false)
-            { // Show them a menu of options they can do
+            {
+                // Show them a menu of options they can do
 
                 Console.WriteLine("Select an option from the Menu below:");
-
-                {
-                    Console.WriteLine("VIEW - View the dinosaurs we have in the order in which they got here!");
-                }
-
+                Console.WriteLine("VIEW - View the dinosaurs we have in the order in which they got here!");
                 Console.WriteLine("ADD - Add a new dinosaur to the zoo!");
                 Console.WriteLine("REMOVE - Remove a dinosaur from the zoo!");
                 Console.WriteLine("TRANSFER - Transfer a dinosaur to a new Enclosure!");
@@ -101,39 +105,91 @@ namespace JurassicPark
                 Console.Write("Choice: ");
                 var choice = Console.ReadLine();
 
+                if (choice == "QUIT")
+                {
+                    hasQuitTheApplication = true;
+                }
+                if (choice == "ADD")
+                {
+                    Console.WriteLine("Name: ");
+                    var name = Console.ReadLine();
+
+                    Console.WriteLine("Diet Type: Carnivore or Herbivore ");
+                    var dietType = Console.ReadLine();
+
+                    Console.WriteLine("Weight: ");
+                    var weight = Console.ReadLine();
+                    var newWeight = int.Parse(weight);
+
+                    Console.WriteLine("Located: ");
+                    var enclosureNumber = Console.ReadLine();
+                    var newEnclosureNumber = int.Parse(enclosureNumber);
+
+                    Console.WriteLine($"Arrived: { whenAcquired}");
+
+                    var dinosaur = new Dinosaur()
+
+                    {
+                        Name = name,
+                        DietType = dietType,
+                        Weight = newWeight,
+                        EnclosureNumber = newEnclosureNumber,
+                        WhenAcquired = whenAcquired,
+                    };
+                    dinosaurs.Add(dinosaur);
+                }
+
                 if (choice == "VIEW")
                 {
                     foreach (var dinosaur in dinosaurs)
                     {
                         Console.WriteLine(dinosaur.Description());
+                        Console.WriteLine();
                     }
-                    Console.Write(N)
+
                 }
-
-
-
-
-                else (choice == “QUIT”)
+                if (choice == "TRANSFER")
                 {
-                    hasQuitTheApplication = true;
+                    var foundDinosaur = PromptAndFindDinosaur(dinosaurs);
+
+                    if (foundDinosaur != null)
+                    {
+                        Console.WriteLine(foundDinosaur.Description());
+
+                        Console.Write("Is this the right dinosaur?, YES or NO:");
+                        var answer = Console.ReadLine();
+
+                        if (answer == "YES")
+                        {
+                            Console.Write("New Enclosure Number: ");
+                            var newEnclosureNumber = Console.ReadLine();
+
+                            foundDinosaur.EnclosureNumber = int.Parse(newEnclosureNumber);
+                        }
+
+                        // /// <c>text</c>
+
+
+                        // else
+                        // {
+                        //     return 0;
+                        // }
+
+
+                        // 4. Give User options 
+                        // When Console Runs, let user chose between:
+                        //    View
+                        //     Add
+                        //     Remove
+                        //     Transfer
+                        //     Summary
+                        //     Quit
+
+
+                    }
+                    Console.WriteLine("Goodbye");
                 }
-                Console.WriteLine(” GOODBYE “);
             }
-
-
-
-            // 4. Give User options 
-            // When Console Runs, let user chose between:
-            //    View
-            //     Add
-            //     Remove
-            //     Transfer
-            //     Summary
-            //     Quit
-
-
         }
-
-
     }
 }
