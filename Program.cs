@@ -62,7 +62,7 @@ namespace JurassicPark
               new Dinosaur
               {
               Name = "LITTLEFOOT",
-              DietType = "HERBIVORE",
+              DietType = "Herbivore",
               WhenAcquired = whenAcquired,
               Weight = 230,
               EnclosureNumber = 001,
@@ -71,7 +71,7 @@ namespace JurassicPark
               new Dinosaur
               {
               Name = "CERA",
-              DietType = "HERBIVORE",
+              DietType = "Carnivore",
               WhenAcquired = whenAcquired,
               Weight = 220,
               EnclosureNumber = 001,
@@ -185,13 +185,6 @@ namespace JurassicPark
 
                             foundDinosaur.EnclosureNumber = int.Parse(newEnclosureNumber);
                         }
-
-                        // /// <c>text</c>
-
-
-
-
-
                         // 4. Give User options 
                         // When Console Runs, let user chose between:
                         //    View
@@ -206,9 +199,18 @@ namespace JurassicPark
                             Console.WriteLine("There is no Dinosaur with that name");
                         }
                     }
-                    Console.WriteLine("Goodbye");
                 }
+                if (choice == "SUMMARY")
+                {
+
+                    int HerbivoreCount = dinosaurs.Count(dinosaur => dinosaur.DietType == ("Herbivore"));
+                    int CarnivoreCount = dinosaurs.Count(dinosaur => dinosaur.DietType == ("Carnivore"));
+
+                    Console.WriteLine($"There are {HerbivoreCount} herbivores and {CarnivoreCount} carnivores in the park");
+                }
+                Console.WriteLine("Goodbye");
             }
         }
     }
 }
+
