@@ -96,37 +96,38 @@ namespace JurassicPark
                         Console.WriteLine(dinosaur.Description());
                         Console.WriteLine();
                     }
-
-                    if (choice == "ADD")
-                    {
-                        Console.WriteLine("Name: ");
-                        var name = Console.ReadLine();
-
-                        Console.WriteLine("Diet Type: Carnivore or Herbivore ");
-                        var dietType = Console.ReadLine();
-
-                        Console.WriteLine("Weight: ");
-                        var weight = Console.ReadLine();
-                        var newWeight = int.Parse(weight);
-
-                        Console.WriteLine("Located: ");
-                        var enclosureNumber = Console.ReadLine();
-                        var newEnclosureNumber = int.Parse(enclosureNumber);
-
-                        Console.WriteLine($"Arrived: { whenAcquired}");
-
-                        var dinosaur = new Dinosaur()
-
-                        {
-                            Name = name,
-                            DietType = dietType,
-                            Weight = newWeight,
-                            EnclosureNumber = newEnclosureNumber,
-                            WhenAcquired = whenAcquired,
-                        };
-                        dinosaurs.Add(dinosaur);
-                    }
                 }
+                if (choice == "ADD")
+                {
+
+                    Console.WriteLine("Name: ");
+                    var name = Console.ReadLine();
+
+                    Console.WriteLine("Diet Type: Carnivore or Herbivore ");
+                    var dietType = Console.ReadLine();
+
+                    Console.WriteLine("Weight: ");
+                    var weight = Console.ReadLine();
+                    var newWeight = int.Parse(weight);
+
+                    Console.WriteLine("Located: ");
+                    var enclosureNumber = Console.ReadLine();
+                    var newEnclosureNumber = int.Parse(enclosureNumber);
+
+                    Console.WriteLine($"Arrived: { whenAcquired}");
+
+                    var dinosaur = new Dinosaur()
+
+                    {
+                        Name = name,
+                        DietType = dietType,
+                        Weight = newWeight,
+                        EnclosureNumber = newEnclosureNumber,
+                        WhenAcquired = whenAcquired,
+                    };
+                    dinosaurs.Add(dinosaur);
+                }
+
                 if (choice == "REMOVE")
                 {
                     var foundDinosaur = PromptAndFindDinosaur(dinosaurs);
