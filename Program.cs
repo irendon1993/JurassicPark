@@ -5,24 +5,6 @@ using System.Linq;
 namespace JurassicPark
 {
     //  PROBLEM) Create a Park for dinosours  
-    //      
-    // DATA
-    // 
-    // // public DateTime WhenAccquired {get; set;} = DateTime.Now;
-    // System.Threading.Thread.Sleep(3000);
-    // Console.WriteLine("PLease Enter the name of your ");
-
-    // var dino2 = new Dinosour()
-    // {
-
-    // }
-    // 
-    // 
-    // 
-    // 
-    //     
-    //ALGORITHM 
-
     class Dinosaur
     {
 
@@ -52,7 +34,6 @@ namespace JurassicPark
 
             return foundDinosaur;
         }
-        // public DateTime WhenAccquired { get; set; } = DateTime.Now;
         static void Main(string[] args)
         {
             var whenAcquired = DateTime.Now;
@@ -61,7 +42,7 @@ namespace JurassicPark
               //  Create a dinosour
               new Dinosaur
               {
-              Name = "LITTLEFOOT",
+              Name = "Littlefoot",
               DietType = "Herbivore",
               WhenAcquired = whenAcquired,
               Weight = 230,
@@ -70,7 +51,7 @@ namespace JurassicPark
 
               new Dinosaur
               {
-              Name = "CERA",
+              Name = "Sharptooth",
               DietType = "Carnivore",
               WhenAcquired = whenAcquired,
               Weight = 220,
@@ -80,20 +61,18 @@ namespace JurassicPark
 
             };
 
-            // 
-            // Greet visitors 
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Welcome to our Dino Zoo!");
             Console.WriteLine();
             Console.WriteLine();
+
             // While the user hasn’t quit the application
             var hasQuitTheApplication = false;
 
             while (hasQuitTheApplication == false)
             {
                 // Show them a menu of options they can do
-
                 Console.WriteLine("Select an option from the Menu below:");
                 Console.WriteLine("VIEW - View the dinosaurs we have in the order in which they got here!");
                 Console.WriteLine("ADD - Add a new dinosaur to the zoo!");
@@ -185,14 +164,6 @@ namespace JurassicPark
 
                             foundDinosaur.EnclosureNumber = int.Parse(newEnclosureNumber);
                         }
-                        // 4. Give User options 
-                        // When Console Runs, let user chose between:
-                        //    View
-                        //     Add
-                        //     Remove
-                        //     Transfer
-                        //     Summary
-                        //     Quit
 
                         else
                         {
