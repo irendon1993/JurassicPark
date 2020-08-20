@@ -109,35 +109,6 @@ namespace JurassicPark
                 {
                     hasQuitTheApplication = true;
                 }
-                if (choice == "ADD")
-                {
-                    Console.WriteLine("Name: ");
-                    var name = Console.ReadLine();
-
-                    Console.WriteLine("Diet Type: Carnivore or Herbivore ");
-                    var dietType = Console.ReadLine();
-
-                    Console.WriteLine("Weight: ");
-                    var weight = Console.ReadLine();
-                    var newWeight = int.Parse(weight);
-
-                    Console.WriteLine("Located: ");
-                    var enclosureNumber = Console.ReadLine();
-                    var newEnclosureNumber = int.Parse(enclosureNumber);
-
-                    Console.WriteLine($"Arrived: { whenAcquired}");
-
-                    var dinosaur = new Dinosaur()
-
-                    {
-                        Name = name,
-                        DietType = dietType,
-                        Weight = newWeight,
-                        EnclosureNumber = newEnclosureNumber,
-                        WhenAcquired = whenAcquired,
-                    };
-                    dinosaurs.Add(dinosaur);
-                }
 
                 if (choice == "VIEW")
                 {
@@ -147,6 +118,54 @@ namespace JurassicPark
                         Console.WriteLine();
                     }
 
+                    if (choice == "ADD")
+                    {
+                        Console.WriteLine("Name: ");
+                        var name = Console.ReadLine();
+
+                        Console.WriteLine("Diet Type: Carnivore or Herbivore ");
+                        var dietType = Console.ReadLine();
+
+                        Console.WriteLine("Weight: ");
+                        var weight = Console.ReadLine();
+                        var newWeight = int.Parse(weight);
+
+                        Console.WriteLine("Located: ");
+                        var enclosureNumber = Console.ReadLine();
+                        var newEnclosureNumber = int.Parse(enclosureNumber);
+
+                        Console.WriteLine($"Arrived: { whenAcquired}");
+
+                        var dinosaur = new Dinosaur()
+
+                        {
+                            Name = name,
+                            DietType = dietType,
+                            Weight = newWeight,
+                            EnclosureNumber = newEnclosureNumber,
+                            WhenAcquired = whenAcquired,
+                        };
+                        dinosaurs.Add(dinosaur);
+                    }
+                }
+                if (choice == "REMOVE")
+                {
+                    var foundDinosaur = PromptAndFindDinosaur(dinosaurs);
+
+                    if (foundDinosaur != null)
+                    {
+                        dinosaurs.Remove(foundDinosaur);
+                        Console.WriteLine(foundDinosaur.Description());
+
+                        Console.Write("Are you sure? YES or NO: ");
+                        var answer = Console.ReadLine();
+
+                        if (answer == "YES")
+                        {
+                            dinosaurs.Remove(foundDinosaur);
+                        }
+
+                    }
                 }
                 if (choice == "TRANSFER")
                 {
@@ -170,10 +189,7 @@ namespace JurassicPark
                         // /// <c>text</c>
 
 
-                        // else
-                        // {
-                        //     return 0;
-                        // }
+
 
 
                         // 4. Give User options 
@@ -185,7 +201,10 @@ namespace JurassicPark
                         //     Summary
                         //     Quit
 
-
+                        else
+                        {
+                            Console.WriteLine("There is no Dinosaur with that name");
+                        }
                     }
                     Console.WriteLine("Goodbye");
                 }
