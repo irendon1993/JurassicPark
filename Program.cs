@@ -22,7 +22,7 @@ namespace JurassicPark
             return description;
         }
 
-    }
+    }   
     class Program
     {
         static Dinosaur PromptAndFindDinosaur(List<Dinosaur> dinosaursToSearchWithin)
